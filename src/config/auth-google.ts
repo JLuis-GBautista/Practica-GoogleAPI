@@ -1,24 +1,25 @@
 import { google } from "googleapis";
 import ENV from "./env";
 
-const oauth2Client = new google.auth.OAuth2(
-    ENV.CLIENT_ID,
-    ENV.CLIENT_SECRET,
-    ENV.REDIRECT_URL
-  );
+export default class GoogleAPIs {
+    private static oauth2Client = new google.auth.OAuth2(
+        ENV.CLIENT_ID,
+        ENV.CLIENT_SECRET,
+        ENV.REDIRECT_URL
+    );
 
-const getTokenGoogle = async() => {
-    try {
-        oauth2Client.setCredentials({
-            refresh_token: ENV.REFRESH_TOKEN,
+    public static drive = google.drive({ version: 'v3', auth: this.oauth2Client });
+
+    public static gmail = google.gmail({ version: 'v1', auth: this.oauth2Client });
+
+    public static async getAccessToken(refresh_token: string) {
+        this.oauth2Client.setCredentials({
+            refresh_token: refresh_token,
         });
-        const accessToken = await oauth2Client.getAccessToken();
-        return accessToken;
-    } catch (error) {
-        console.log(error, 'error al generar un access token');
+        return await this.oauth2Client.getAccessToken();
     }
 }
 
-export default getTokenGoogle;
+
 
 

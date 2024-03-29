@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { sendEmail } from "../controllers/gmail.controlllers";
+import { sendEmail } from "../controllers/gmail.controllers";
 
 const gmailRoutes = Router();
 

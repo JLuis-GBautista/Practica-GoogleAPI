@@ -3,3 +3,4 @@ dist/
 .env.dev
 .env.prod
 ngrok.exe
+package-lock.json

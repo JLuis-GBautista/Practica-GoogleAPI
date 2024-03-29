@@ -5,7 +5,8 @@ interface Env {
     CLIENT_ID: string;
     CLIENT_SECRET: string;
     REDIRECT_URL: string;
-    REFRESH_TOKEN: string;
+    REFRESH_TOKEN_GMAIL: string;
+    REFRESH_TOKEN_DRIVE: string;
     USER_EMAIL: string;
   }
 
